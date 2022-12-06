@@ -15,7 +15,7 @@ variable "records" {
   type = set(object({
     name    = string
     type    = string
-    ttl     = optional(number, 300)
+    ttl     = optional(number)
     records = list(string)
     alias = optional(object({
       name                   = string
@@ -25,7 +25,7 @@ variable "records" {
   }))
 }
 
-variable "record_ttl" {
+variable "default_ttl" {
   type    = number
   default = 300
 }
