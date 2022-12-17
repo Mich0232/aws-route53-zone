@@ -11,6 +11,24 @@ variable "tags" {
   default = {}
 }
 
+variable "no_certificate" {
+  type    = bool
+  default = false
+}
+
+variable "certificate" {
+  type = optional(object({
+    arn = string
+    domain_validation_options = list(object({
+      domain_name           = string
+      resource_record_name  = string
+      resource_record_value = string
+      resource_record_type  = string
+    }))
+  }))
+  default = null
+}
+
 variable "records" {
   type = set(object({
     name    = string
@@ -31,6 +49,7 @@ variable "default_ttl" {
 }
 
 locals {
+  create_certificate = var.certificate == null
   resource_tags = merge(var.tags, {
     Project = var.project_name
   })

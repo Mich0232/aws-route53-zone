@@ -15,6 +15,10 @@ This Terraform module create a R53 hosted zone with attached SSL certificate.
 
 `records` - set of DNS records.
 
+`no_certificate` - Don't use/generate SSL certificate``
+
+`certificate` - ACM certificate data. If not provided SSL certificate will be generated.
+
 ```terraform
 {
   type = set(object({
