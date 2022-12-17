@@ -17,7 +17,7 @@ variable "no_certificate" {
 }
 
 variable "certificate" {
-  type = optional(object({
+  type = object({
     arn = string
     domain_validation_options = list(object({
       domain_name           = string
@@ -25,7 +25,7 @@ variable "certificate" {
       resource_record_value = string
       resource_record_type  = string
     }))
-  }))
+  })
   default = null
 }
 
