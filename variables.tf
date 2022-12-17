@@ -11,6 +11,11 @@ variable "tags" {
   default = {}
 }
 
+variable "renewal_eligibility" {
+  type    = bool
+  default = true
+}
+
 variable "no_certificate" {
   type    = bool
   default = false

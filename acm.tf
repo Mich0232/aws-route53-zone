@@ -8,8 +8,9 @@ resource "aws_acm_certificate" "main" {
 
   provider = aws.aws-na
 
-  domain_name       = var.domain
-  validation_method = "DNS"
+  domain_name         = var.domain
+  validation_method   = "DNS"
+  renewal_eligibility = var.renewal_eligibility
 
   tags = local.resource_tags
 
