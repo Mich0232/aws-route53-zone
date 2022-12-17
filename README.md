@@ -13,11 +13,27 @@ This Terraform module create a R53 hosted zone with attached SSL certificate.
 
 `project_name` - Project name, will be used to prefix and tag AWS resources.
 
-`records` - set of DNS records.
 
 `no_certificate` - Don't use/generate SSL certificate``
 
 `certificate` - ACM certificate data. If not provided SSL certificate will be generated.
+
+```terraform
+{
+  type = optional(object({
+    arn = string
+    domain_validation_options = list(object({
+      domain_name           = string
+      resource_record_name  = string
+      resource_record_value = string
+      resource_record_type  = string
+    }))
+  }))
+  default = null
+}
+```
+
+`records` - set of DNS records.
 
 ```terraform
 {
