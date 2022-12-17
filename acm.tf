@@ -4,7 +4,7 @@ locals {
 }
 
 resource "aws_acm_certificate" "main" {
-  for_each = local.create_certificate && var.no_certificate == false ? ["1"] : []
+  for_each = toset(local.create_certificate && var.no_certificate == false ? ["1"] : [])
 
   provider = aws.aws-na
 
@@ -21,7 +21,7 @@ resource "aws_acm_certificate" "main" {
 }
 
 resource "aws_acm_certificate_validation" "main" {
-  for_each = length(local.domain_validation_options) > 0 ? ["1"] : []
+  for_each = toset(length(local.domain_validation_options) > 0 ? ["1"] : [])
   provider = aws.aws-na
 
   certificate_arn         = local.certificate_arn
