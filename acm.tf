@@ -1,6 +1,6 @@
 locals {
-  certificate_arn           = local.create_certificate ? aws_acm_certificate.main.arn : var.certificate.arn
-  domain_validation_options = var.no_certificate ? [] : local.create_certificate ? aws_acm_certificate.main.domain_validation_options : var.certificate.domain_validation_options
+  certificate_arn           = local.create_certificate ? aws_acm_certificate.main[1].arn : var.certificate.arn
+  domain_validation_options = var.no_certificate ? [] : local.create_certificate ? aws_acm_certificate.main[1].domain_validation_options : var.certificate.domain_validation_options
 }
 
 resource "aws_acm_certificate" "main" {

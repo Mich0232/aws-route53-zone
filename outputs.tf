@@ -7,5 +7,5 @@ output "name_servers" {
 }
 
 output "certificate_arn" {
-  value = aws_acm_certificate_validation.main.certificate_arn
+  value = var.no_certificate ? null : aws_acm_certificate_validation.main[1].certificate_arn
 }
